@@ -1,0 +1,19 @@
+
+-vcodec
+	libx264：使用libx264编码压缩视频
+	codec：使用codec编解码
+	copy：原始编解码数据必须被拷贝
+	
+-acodec
+	aac：音频编码用AAC
+	amr_nb：
+	codec：使用codec编解码
+	copy：原始编解码数据必须被拷贝
+
+-y：覆盖输出
+
+-s
+	800x600：指定分辨率
+	
+-r
+	29.97：设置帧数

@@ -1,0 +1,23 @@
+
+线程安全
+	1、常量始终是线程安全的，因为只存在读操作。
+	2、对构造器的访问(new 操作)是线程安全的，因为每次都新建一个实例，不会访问共享的资源。
+	3、局部变量是线程安全的。局部变量包括方法的参数变量。
+	
+线程同步(synchronized)：当已经有线程在执行这段代码的时候，其他的线程必须等待他执行完毕后才能进来执行，这就是所谓的线程同步。
+	1、public synchronized void run() { ... }
+	2、public void run() { synchronized(this){//代码块 } }
+	
+并发 Collection(线程安全)
+	Map<String, Object> myMap = new ConcurrentHashMap<String, Object>();
+	List<String> myList = new CopyOnWriteArrayList<String>();// 解决集合迭代的时候增删元素时出错的问题
+	Set<String> mySet = new CopyOnWriteArraySet<String>();// 解决集合迭代的时候增删元素时出错的问题
+	
+	
+ArrayBlockingQueue
+	1、插入或删除元素时不会产生或销毁任何额外的对象实例
+	2、生产者端和消费者端采用【同一个锁】来控制数据存储
+LinkedBlockingQueue
+	1、插入或删除元素时会生成一个额外的Node对象
+	2、生产者端和消费者端分别采用了【独立的锁】来控制数据同步
+	

@@ -1,0 +1,241 @@
+http://www.runoob.com/design-pattern/design-pattern-tutorial.html			
+
+Facade:门面设计模式
+	当类关系调来调去时，另建一个门面类，让门面类理清所有类的关系，我再调用这个门面类。
+	实例：项目里的Handler就是门面设计模式
+		
+Flyweight:享元设计模式
+	运用共享技术有效地支持大量细粒度的对象。
+	用一个Map存储对象，每个对象都是单例。
+	实例：数据库连接池，线程池等即是用享元模式的应用。
+	
+Interpreter:解释器设计模式
+	给定一个语言，定义它的文法的一种表示，并定义一个解释器，这个解释器使用该表示来解释语言中的句子。
+	编译器、正则表达式、语言规范
+	在实际的系统开发中使用的非常少，因为它会引起效率、性能以及维护等问题
+	
+Iteartor:迭代器设计模式
+	提供一种方法顺序访问一个聚合对象中各个元素, 而又不需暴露该对象的内部表示。
+	hasNext, next, iterator
+	
+Memento：备忘录设计模式
+	在不破坏封装性的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态。这样以后就可将该对象恢复到原先保存的状态。
+	打游戏时的存档、数据库的事务管理
+
+单一职责原则
+	不要存在多于一个导致类变更的原因。
+
+里氏替换原则
+	子类可以扩展父类的功能，但不能改变父类原有的功能。
+	子类方法的形参要比父类的宽松，子类方法的返回值要比父类严格。
+	通俗点讲，父类替换为子类不会产生任何错误或异常。
+	
+依赖倒置原则
+	高层模块依赖低层模块==>低层模块依赖抽象+高层模块依赖其抽象。
+	核心：面向接口编程。
+	传递依赖关系有三种方式：接口传递、构造方法传递、setter方法传递。
+	
+接口隔离原则
+	不要定义一个有很多方法的接口，然后让多个类去实现，这样的话会导致实现类必须要实现自己不需要的方法，建议对接口进行拆分成多个接口。
+
+迪米特法则
+	最少知识原则。一个对象应当对其他对象有尽可能少的了解。
+	例子：设计模式的门面模式（Facade）和中介模式（Mediator）
+	
+开闭原则
+	对扩展开放，对修改关闭。用抽象构建框架，用实现扩展细节。
+	
+类的关系
+	1、依赖(------>)：类A当中使用了类B，其中类B是作为类A的“方法参数”、“方法中的局部变量”、或者“静态方法调用”。
+		public class People{
+		     public void read(Book book){//Book作为read方法的形参
+		        System.out.println(book.getName());
+		    }
+		}
+	2、关联(——————>)：类A当中使用了类B，其中类B是作为类A的“成员变量”。
+		public class Father{
+		    Son son = new Son();
+		    public void giveGift(){
+		        System.out.println(son.getName());
+		    }
+		}
+	3、聚合、组合
+	4、继承(————————|>)、实现(--------|>)
+	
+【Effective Java】
+
+第1条★：考虑用静态工厂方法代替构造器
+	优点：
+		1、名称可自定义
+		2、不必在每次调用的时候都创建一个新对象：单例模式
+		3、可以返回原返回类型的任何子类型的对象
+		4、使代码变得简洁
+	示例：
+		1、Book.getInstance() 替代 new Book()
+		2、String.valueOf(XXX xxx) 替代 new String(XXX xxx)
+		
+第2条★：遇到多个构造器参数时要考虑用构建器
+	示例：
+		test.zcj.demo.designpattern.creates.builder.MyBuilder2
+		com.zcj.web.springmvc.support.Uploader
+		com.zcj.web.springmvc.support.Downloader
+		
+第4条★：通过私有构造器强化不可实例化的能力
+	优点：
+		1、避免被实例化
+	示例：
+		public class UtilCollection {
+			private UtilCollection() { }
+			public static void test() { ... }
+		}
+		
+第5条★：避免创建不必要的对象
+	反例：
+		public class Person {
+			public boolean isTest() {
+				// 创建对象
+				// 执行
+			}
+		}
+	正例：
+		public class Person {
+			static {
+				// 创建对象
+			}
+			public boolean isTest() {
+				// 执行
+			}
+		}
+	说明：
+		1、可避免多次被调用时重复创建对象，达到性能提升
+		2、可以再优化为第一次执行时创建对象（会让实现变复杂，不建议优化）
+		
+第6条：消除过期的对象引用
+
+第7条：避免使用终结方法[finalize()]
+	说明：
+        1、缺点：Java语言规范不保证finalize()会被及时执行，只规定在对象被垃圾回收之前执行
+        2、缺点：finalize()方法有严重的性能损失
+        3、替代方法：提供一个显式的终结方法，如InputStream、OutputStream的close方法
+        4、特殊情况下可使用：安全网（无显式的终结方法）、终止非关键的本地资源
+
+第8条：覆盖equals时请遵守通用约定
+	 约定：自反性、对称性、传递性、一致性、非空性
+
+第9条：覆盖equals时总要覆盖hashCode
+	说明：
+        1、如果调用equals返回true，则调用hashCode必须返回相同的整数值
+        2、如果不遵守，则使用基于hash的集合无法正常运作，如HashMap、HashSet
+		
+第10条：始终要覆盖toString方法
+
+第11条：谨慎地覆盖clone方法
+
+第12条：考虑实现Comparable接口
+	说明：
+        1、优点：可实现比较、查询、排序[Arrays.sort(a)]
+        2、Comparable 和 Comparator
+        	Comparable：若一个类实现了comparable接口，则意味着该类支持排序，如String、Integer可以通过Collections.sort(list)或者Arrays.sort(array)实现排序
+        	Comparator：类本身没实现comparable接口，可在外部写一个Comparator来完成两个对象之间大小的比较
+
+第13条★：使类和成员的可访问性最小化
+	说明：
+        1、类尽量设计为包级私有（private）
+        2、public static final 声明的域所引用的对象必须是不可变的
+	反例：
+		public static final Thing[] VALUES[] = {...};// 长度非零的数组是可变的
+
+第14条★：在共有类中使用访问方法而非公有域
+	说明：
+        1、使用get和set操作公有域
+
+第15条★：使可变性最小化
+	说明：
+        1、不可变类：String、BigInteger、BigDecimal
+        2、不可变类：实例不能被修改、所有域都是final且private
+        3、final类：不能被继承、实例线程安全(自由地共享)
+        4、final类：可提供静态工厂代替构造器，并用来共享现有的实例，降低内存占用
+
+第16条：复合优于继承
+	说明：
+		1、继承的缺点：打破了封装性，子类依赖于父类中特定功能的实现细节。如新类覆盖了add()和addAll()方法并都加入额外的操作，addAll()内部实现是调用add()，会导致新类重复运行额外操作
+		2、复合的用法：在新的类中增加一个私有域，它引用现有类的一个实例；正是装饰模式(Decorator)
+		3、复合的优点：不依赖于现有类的实现细节
+		
+第17条★：要么为继承而设计，并提供文档说明，要么就禁止继承
+	说明：
+		1、可继承时：构造器决不能调用可被覆盖的方法
+		2、不可继承时：类声明为final 或者 所有构造器改成private
+	
+第18条：接口优于抽象类
+	说明：
+		1、接口优点：类允许实现多接口，抽象类只能单继承
+		2、接口缺点：接口被使用以后，无法继续加新方法
+
+第19条：接口只用于定义类型
+	说明：
+		1、只定义常量却无方法的接口是不可取的
+	
+第20条：类层次优于标签类
+	说明：
+		1、标签类：一个类表示多种对象，每种对象有各自的属性，通过标签来区分
+		2、类层次：通过继承来实现
+
+第21条：用函数对象表示策略
+	正例：
+		Collections.sort(students, new Comparator<Student>() {
+			@Override
+			public int compare(Student c1, Student c2) {
+				......
+			}
+		});
+		
+第22条：优先考虑静态成员类
+	说明：
+		1、静态成员类：如：Builder模式中的Builder
+		2、非静态成员类：每个实例都关联外围类的实例；可访问外围类实例（如果不需要访问，就要用静态成员类）；如定义Adapter、ArrayList的iterator
+		3、匿名类：常用于动态的创建函数对象；例：第21条
+		4、局部类
+		
+第26~27条★：优先考虑泛型和泛型方法
+	说明：
+		1、对公共API设计的时候非常有用
+
+第34条：用接口模拟可伸缩的枚举
+	说明：
+		1、用途：可用于在枚举中定义一系列操作，然后一次调用自动让所有操作都走一遍的功能
+		2、详见：test.zcj.demo.enums.operation.*
+
+第39条：必要时进行保护性拷贝
+	反例：
+		public final class Period {
+			private final Date start;
+			public Peroid(Date start) {
+				// 正例：this.start = new Date(start.getTime);
+				this.start = start;
+			}
+			public Date start() {
+				// 正例：return new Date(start.getTime);
+				return start;
+			}
+		}
+		// 反例的被攻击方式：修改不可变属性（Date本身是可变的）
+		Date start = new Date();
+		Period p = new Period(start);
+		start.setYear(78);
+		p.start().setYear(78);
+		
+第41条：慎用重载
+	说明：
+		1、不要使用两个具有相同参数数目的重载方法，可以使用不同的方法名如readBoolean()/readInt()/readLong()等
+	
+第42条：慎用可变参数
+
+第43条：返回零长度的数组或者集合，而不是null
+		
+第45条：TODO
+
+树（二叉查找树、平衡二叉树、红黑树、B树、B+树）
+
+重入锁、乐观锁和悲观锁、偏向锁、轻量级锁、重量级锁、自旋锁
+

@@ -1,0 +1,36 @@
+
+
+LinkedHashMap:存储顺序输出；TreeMap:key排序输出
+
+11 集合
+	数组：效率、长度固定、
+	Collections:提供集合的一些静态方法
+	Arrays:提供数组的一些静态方法
+	“迭代器”设计模式:Iterator、Iterable、AbstractList、Itr
+	Iterator(interface):提供hasNext()和next()方法
+		|_ListIterator:只能用于各类List类的访问。可以向前和向后移动。
+		|_Itr(AbstractList中的内部类):实现了Iterator接口中的hasNext()和next()方法
+	Iterable(interface):提供iterator()方法,返回Iterator对象
+		|_Collection(interface)
+			|_List(interface)
+				|_ArrayList:适合大量的随机访问
+				|_LinkedList:适合从表中间插入或删除元素
+				|_AbstractList(abstract)
+			|_Set(interface)
+				|_HashSet:最快获取元素的方式
+					|_LinkedHaseSet:按照被添加的顺序保存对象,最快获取元素的方式
+				|_TreeSet:按照比较结果的升序保存对象
+			|_Queue(interface):队列
+				|_LinkedList
+				|_PriorityQueue
+			|_AbstractCollection(abstract)
+				|_AbstractList(abstract):实现iterator()方法,返回Itr对象
+					|_ArrayList
+		Map(interface)
+			|_HashMap:最快的查询技术,无顺序
+				|_LinkedHaseMap:按照被添加的顺序保存键,同时保留了最快的查询技术
+			|_TreeMap:按照比较结果的升序保存键
+			
+	PS:
+	1、HashSet的内部实现其实就是使用了HashMap，只是只使用了HashMap的key，去掉了HashMap的value.
+	
