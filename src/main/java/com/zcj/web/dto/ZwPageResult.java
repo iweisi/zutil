@@ -3,11 +3,12 @@ package com.zcj.web.dto;
 import java.util.List;
 
 /**
- * 掌网列表分页查询的返回值工具类
+ * 列表分页查询的返回值工具类
  * 
  * @author zouchongjin@sina.com
  * @data 2014年8月8日
  */
+@Deprecated
 public class ZwPageResult {
 
 	private int s;

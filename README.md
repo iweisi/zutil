@@ -60,6 +60,6 @@
 | dto           | 数据传输对象     | 各类操作时的数据传输对象：文件上传下载时、API调用时、分页查询时 |
 | listener      | -                | ServletContextListener 的基础实现类，包含了数据库的获取和操作方法 |
 | mybatis       | WEB开发的基础类  | 包含了 Entity、ORM、Service 的基础类 |
-| spring        | Spring相关工具   | Bean 的获取 |
+| spring        | Spring相关工具   | Bean 的获取方法 |
 | springmvc     | WEB开发的基础类  | 包含了控制层的基础类、各种拦截器、文件上传下载构建工具 |
-| struts        | 基于Struts框架的基础类    | 已废弃 |
+| struts        | 基于Struts框架的基础类    | [已废弃] |
