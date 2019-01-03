@@ -1,13 +1,8 @@
 package test.zcj.ext.elasticsearch;
 
-import java.io.IOException;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-
+import com.zcj.ext.elasticsearch.UtilElasticsearch;
+import com.zcj.ext.elasticsearch.UtilElasticsearchExt;
+import com.zcj.web.dto.AjaxResult;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexResponse;
 import org.elasticsearch.action.bulk.BackoffPolicy;
 import org.elasticsearch.action.bulk.BulkProcessor;
@@ -46,9 +41,13 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.zcj.ext.elasticsearch.UtilElasticsearch;
-import com.zcj.ext.elasticsearch.UtilElasticsearchExt;
-import com.zcj.web.dto.ServiceResult;
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 public class TestElasticsearch {
 
@@ -130,7 +129,7 @@ public class TestElasticsearch {
 		map.put("name", "zzz");
 		map.put("ctime", "2013-01-30 12:15:25");
 		map.put(UtilElasticsearchExt.GEO_FIELD_NAME, new Double[] {120.579813, 27.938374});
-		String jsonString = ServiceResult.GSON_DT.toJson(map);
+		String jsonString = AjaxResult.GSON_DT.toJson(map);
 		bulkProcessor.add(new IndexRequest(indexName, typeName).source(jsonString));
 		bulkProcessor.add(new IndexRequest(indexName, typeName, "2").source(jsonString));
 		bulkProcessor.flush();

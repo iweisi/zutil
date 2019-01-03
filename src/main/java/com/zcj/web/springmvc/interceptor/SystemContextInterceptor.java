@@ -75,10 +75,8 @@ public class SystemContextInterceptor implements HandlerInterceptor {
 
 		// System.out.println(arg0.getContextPath()); // "/ssm"
 		// System.out.println(arg0.getRequestURI()); // "/ssm/login.do"
-		// System.out.println(arg0.getRequestURL()); //
-		// "http://.../ssm/login.do"
+		// System.out.println(arg0.getRequestURL()); // "http://.../ssm/login.do"
 		// System.out.println(arg0.getSession().getServletContext().getRealPath("/"));
-		// //
 		// "E:\Kuaipan\Java_Developer\eclipseWorkspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp8\wtpwebapps\spring_springmvc_mybatis\"
 		// System.out.println(arg0.getServletPath()); // "/login.do"
 

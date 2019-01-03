@@ -4,7 +4,7 @@
 
 	<groupId>com.zopen</groupId>
 	<artifactId>zutil</artifactId>
-	<version>1.0.0</version>
+	<version>1.1.0</version>
 	<packaging>jar</packaging>
 
 	<name>zutil</name>
@@ -71,6 +71,13 @@
 			<artifactId>junit</artifactId>
 			<version>4.11</version>
 			<scope>test</scope>
+		</dependency>
+
+		<!-- Swagger2 -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>2.7.0</version>
 		</dependency>
 
 		<!-- com.zcj.util.json.gson -->
@@ -149,23 +156,6 @@
 			<version>2.5.0</version>
 			<scope>system</scope>
 			<systemPath>${basedir}/lib/pinyin4j-2.5.0.jar</systemPath>
-		</dependency>
-
-		<!-- com.zcj.util.UtilApacheHttpClient2.java -->
-		<dependency>
-			<groupId>org.apache.httpcomponents</groupId>
-			<artifactId>httpclient</artifactId>
-			<version>4.3.3</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.httpcomponents</groupId>
-			<artifactId>httpmime</artifactId>
-			<version>4.3.3</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.james</groupId>
-			<artifactId>apache-mime4j</artifactId>
-			<version>0.6.1</version>
 		</dependency>
 
 		<!-- com.zcj.util.freemarker -->

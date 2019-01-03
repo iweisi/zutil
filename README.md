@@ -10,7 +10,6 @@
 | jpush         | JPush         | 简单封装|
 | mongodb       | MongoDB       | -|
 | oss.aliyun    | 阿里云存储    | 简单封装|
-| pingpp        | Ping++        | 简单封装[已废弃]|
 
 ## com.zcj.util : 各种工具类
 | 包名          | 用途    |  简介  |
@@ -57,7 +56,7 @@
 | 包名          | 用途    |  简介  |
 | --------      | :-----        | :---- |
 | context       | 内容存储和获取   | session 和 ThreadLocal的内容获取 |
-| dto           | 数据传输对象     | 各类操作时的数据传输对象：文件上传下载时、API调用时、分页查询时 |
+| dto           | 数据传输对象     | 各类操作时的数据传输对象：文件上传下载时、API调用时 |
 | listener      | -                | ServletContextListener 的基础实现类，包含了数据库的获取和操作方法 |
 | mybatis       | WEB开发的基础类  | 包含了 Entity、ORM、Service 的基础类 |
 | spring        | Spring相关工具   | Bean 的获取方法 |
