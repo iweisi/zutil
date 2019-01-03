@@ -35,6 +35,10 @@ public class AjaxResult<T> implements Serializable {
     public static final Gson GSON_DT = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
     private static final Gson GSON_DT_SERIALIZE_NULLS = new GsonBuilder().serializeNulls().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
 
+    public String toJson() {
+        return GSON_DT.toJson(this);
+    }
+
     public static <T> AjaxResult<T> initSuccess(T data) {
         return new AjaxResult<T>(CODE_SUCCESS, MSG_SUCCESS, data, null);
     }

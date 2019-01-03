@@ -38,6 +38,10 @@ public class ApiResult<T> implements Serializable {
     private static final Gson GSON_D = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
     private static final Gson GSON_DT = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
 
+    public String toJson() {
+        return GSON_DT.toJson(this);
+    }
+
     public static <T> ApiResult<T> initSuccess(T data) {
         return new ApiResult<T>(CODE_SUCCESS, MESSAGE_SUCCESS, data, null);
     }

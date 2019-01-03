@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import com.zcj.web.exception.BusinessException;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -165,8 +166,6 @@ public class ExcelUtil {
 	 * @param objs
 	 * @param clz
 	 * @param isClasspath
-	 * @param showTitle
-	 *            是否显示标题行
 	 * @return
 	 */
 	private ExcelTemplate handlerObj2Excel(String template, List<?> objs, Class<?> clz, boolean isClasspath) {
@@ -201,7 +200,7 @@ public class ExcelUtil {
 					}
 				} catch (Exception e) {
 					logger.error(e.getMessage(), e);
-					throw new RuntimeException("BeanUtils获取属性值失败");
+					throw new BusinessException("BeanUtils获取属性值失败");
 				}
 			}
 		}
@@ -229,17 +228,17 @@ public class ExcelUtil {
 			wb.write(fos);
 		} catch (FileNotFoundException e) {
 			logger.error(e.getMessage(), e);
-			throw new RuntimeException(outPath + "文件路径不存在");
+			throw new BusinessException(outPath + "文件路径不存在");
 		} catch (IOException e) {
 			logger.error(e.getMessage(), e);
-			throw new RuntimeException("文件写入失败");
+			throw new BusinessException("文件写入失败");
 		} finally {
 			try {
 				if (fos != null)
 					fos.close();
 			} catch (IOException e) {
 				logger.error(e.getMessage(), e);
-				throw new RuntimeException("输出流关闭失败");
+				throw new BusinessException("输出流关闭失败");
 			}
 		}
 	}
@@ -263,7 +262,7 @@ public class ExcelUtil {
 			wb.write(os);
 		} catch (IOException e) {
 			logger.error(e.getMessage(), e);
-			throw new RuntimeException("文件写入失败");
+			throw new BusinessException("文件写入失败");
 		}
 	}
 
@@ -293,17 +292,17 @@ public class ExcelUtil {
 			wb.write(fos);
 		} catch (FileNotFoundException e) {
 			logger.error(e.getMessage(), e);
-			throw new RuntimeException(outPath + "文件路径不存在");
+			throw new BusinessException(outPath + "文件路径不存在");
 		} catch (IOException e) {
 			logger.error(e.getMessage(), e);
-			throw new RuntimeException("文件写入失败");
+			throw new BusinessException("文件写入失败");
 		} finally {
 			try {
 				if (fos != null)
 					fos.close();
 			} catch (IOException e) {
 				logger.error(e.getMessage(), e);
-				throw new RuntimeException("输出流关闭失败");
+				throw new BusinessException("输出流关闭失败");
 			}
 		}
 	}
@@ -327,7 +326,7 @@ public class ExcelUtil {
 			wb = WorkbookFactory.create(new File(path));
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
-			throw new RuntimeException("文件读取失败");
+			throw new BusinessException("文件读取失败");
 		}
 		Sheet sheet = wb.getSheetAt(sheetAt);
 		if (sheet != null) {
@@ -372,7 +371,7 @@ public class ExcelUtil {
 					r.createCell(j).setCellValue(BeanUtils.getProperty(obj, getMethodName(headers.get(j))));
 				} catch (Exception e) {
 					logger.error(e.getMessage(), e);
-					throw new RuntimeException("BeanUtils获取属性值失败");
+					throw new BusinessException("BeanUtils获取属性值失败");
 				}
 			}
 		}
@@ -452,7 +451,7 @@ public class ExcelUtil {
 			}
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
-			throw new RuntimeException("通过Workbook创建对象集合失败");
+			throw new BusinessException("通过Workbook创建对象集合失败");
 		}
 		return objs;
 	}
@@ -479,7 +478,7 @@ public class ExcelUtil {
 			wb = WorkbookFactory.create(ExcelUtil.class.getResourceAsStream(path));
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
-			throw new RuntimeException("文件读取失败");
+			throw new BusinessException("文件读取失败");
 		}
 		return handlerExcel2Objs(wb, clz, sheetAt, readLine, tailLine);
 	}
@@ -506,7 +505,7 @@ public class ExcelUtil {
 			wb = WorkbookFactory.create(new File(path));
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
-			throw new RuntimeException("文件读取失败");
+			throw new BusinessException("文件读取失败");
 		}
 		return handlerExcel2Objs(wb, clz, sheetAt, readLine, tailLine);
 	}
